@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Wearify Co.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <img src="assets/images/logo.png" alt="Wearify Co. Logo" style="height: 40px; margin-right: 10px;">
+                Wearify Co.
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-logout" onclick="logout()">Logout</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <section class="hero-banner" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 80px 0; margin-bottom: 40px; position: relative; overflow: hidden;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
+                    <div class="hero-content" style="padding-right: 30px;">
+                        <h1 style="font-size: 3.5rem; font-weight: 800; color: #202223; line-height: 1.2; margin-bottom: 20px;">
+                            LET'S EXPLORE
+                            <span style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); padding: 5px 15px; display: inline-block; border-radius: 8px; color: #202223;">UNIQUE</span>
+                            <br>CLOTHES.
+                        </h1>
+                        <p style="font-size: 1.1rem; color: #6d7175; margin-bottom: 30px; font-weight: 400;">
+                            Live for Influential and Innovative fashion!
+                        </p>
+                        <a href="#productsContainer" class="btn btn-primary-custom" style="padding: 14px 40px; font-size: 1.1rem; position: relative; overflow: hidden;">
+                            Shop Now
+                            <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: #FFD700; border-radius: 2px;"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="hero-image" style="position: relative; text-align: center;">
+                        <img src="assets/images/women/cardigan/cardigan-1.webp" alt="Fashion Collection" style="max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); transform: scale(1); transition: transform 0.3s ease;">
+                        <div style="position: absolute; top: 20px; right: 20px; font-size: 3rem; color: #FFD700; animation: spin 4s linear infinite;">⭐</div>
+                        <div style="position: absolute; bottom: 30px; left: 20px; font-size: 2rem; color: #FFD700; animation: spin 6s linear infinite;">⭐</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .hero-image img:hover {
+                transform: scale(1.05);
+            }
+
+            @media (max-width: 768px) {
+                .hero-banner {
+                    padding: 50px 0 !important;
+                }
+
+                .hero-content h1 {
+                    font-size: 2.5rem !important;
+                }
+
+                .hero-content p {
+                    font-size: 1rem !important;
+                }
+
+                .hero-content {
+                    padding-right: 0 !important;
+                    text-align: center;
+                }
+            }
+        </style>
+    </section>
+
+    
+    <div class="main-content">
+        <div class="container">
+            
+            <div class="page-header animate-fade-in">
+                <h2>Product Catalog</h2>
+                <p>Browse our amazing collection of clothing items</p>
+            </div>
+
+            
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search products..." style="border-radius: 10px 0 0 10px; padding: 12px 15px; border: 2px solid #e1e3e5;">
+                        <button class="btn btn-primary-custom" type="button" style="border-radius: 0 10px 10px 0;">Search</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select" id="categoryFilter" style="border-radius: 10px; padding: 12px 15px; border: 2px solid #e1e3e5;">
+                        <option value="all">All Categories</option>
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                        <option value="kids">Kids</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+            </div>
+
+            
+            <div class="row" id="productsContainer">
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in">
+                        <img src="assets/images/men/hoodie/hoodie-1.webp" alt="Men's Hoodie">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Premium Hoodie</h5>
+                            <div class="price">RM 219.99</div>
+                            <p>Comfortable cotton blend hoodie perfect for casual wear</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Premium Hoodie', 'RM 219.99', 'assets/images/men/hoodie/hoodie-1.webp', 'Comfortable cotton blend hoodie perfect for casual wear. Premium quality fabric with modern fit.', 'S, M, L, XL, XXL', '80% Cotton, 20% Polyester', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.1s">
+                        <img src="assets/images/men/hoodie/hoodie-2.webp" alt="Men's Hoodie">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Sport Hoodie</h5>
+                            <div class="price">RM 54.99</div>
+                            <p>Athletic fit hoodie with moisture-wicking technology</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Sport Hoodie', 'RM 54.99', 'assets/images/men/hoodie/hoodie-2.webp', 'Athletic fit hoodie with moisture-wicking technology. Perfect for workouts and active lifestyle.', 'S, M, L, XL, XXL', '85% Polyester, 15% Spandex', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.2s">
+                        <img src="assets/images/men/hoodie/hoodie-3.webp" alt="Men's Hoodie">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Classic Hoodie</h5>
+                            <div class="price">RM 45.99</div>
+                            <p>Timeless design with premium comfort and durability</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Classic Hoodie', 'RM 45.99', 'assets/images/men/hoodie/hoodie-3.webp', 'Timeless design with premium comfort and durability. Classic pullover style with kangaroo pocket.', 'S, M, L, XL, XXL', '90% Cotton, 10% Polyester', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.3s">
+                        <img src="assets/images/men/polo/polo-1.jpg" alt="Men's Polo">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Classic Polo Shirt</h5>
+                            <div class="price">RM 39.99</div>
+                            <p>Elegant polo shirt for business casual occasions</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Classic Polo Shirt', 'RM 39.99', 'assets/images/men/polo/polo-1.jpg', 'Elegant polo shirt for business casual occasions. Breathable fabric with modern slim fit.', 'S, M, L, XL, XXL', '100% Pima Cotton', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.4s">
+                        <img src="assets/images/men/polo/polo-2.webp" alt="Men's Polo">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Premium Polo</h5>
+                            <div class="price">RM 44.99</div>
+                            <p>High-quality fabric with modern fit and style</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Premium Polo', 'RM 44.99', 'assets/images/men/polo/polo-2.webp', 'High-quality fabric with modern fit and style. Moisture-wicking performance polo.', 'S, M, L, XL, XXL', '95% Cotton, 5% Elastane', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.5s">
+                        <img src="assets/images/men/polo/polo-3.webp" alt="Men's Polo">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Sport Polo</h5>
+                            <div class="price">RM 42.99</div>
+                            <p>Breathable performance polo for active lifestyle</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Sport Polo', 'RM 42.99', 'assets/images/men/polo/polo-3.webp', 'Breathable performance polo for active lifestyle. Quick-dry technology for all-day comfort.', 'S, M, L, XL, XXL', '100% Polyester Performance', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.6s">
+                        <img src="assets/images/men/tshirt/tshirt-1.jpg" alt="Men's T-Shirt">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Essential T-Shirt</h5>
+                            <div class="price">RM 24.99</div>
+                            <p>Soft cotton t-shirt, perfect for everyday wear</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Essential T-Shirt', 'RM 24.99', 'assets/images/men/tshirt/tshirt-1.jpg', 'Soft cotton t-shirt, perfect for everyday wear. Classic crew neck with comfortable fit.', 'S, M, L, XL, XXL', '100% Cotton', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.7s">
+                        <img src="assets/images/men/tshirt/tshirt-2.webp" alt="Men's T-Shirt">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Graphic T-Shirt</h5>
+                            <div class="price">RM 29.99</div>
+                            <p>Trendy design with superior comfort and fit</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Graphic T-Shirt', 'RM 29.99', 'assets/images/men/tshirt/tshirt-2.webp', 'Trendy design with superior comfort and fit. Modern graphics on premium quality fabric.', 'S, M, L, XL, XXL', '95% Cotton, 5% Spandex', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="men">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.8s">
+                        <img src="assets/images/men/tshirt/tshirt-3.webp" alt="Men's T-Shirt">
+                        <div class="card-body">
+                            <span class="category-badge">Men</span>
+                            <h5>Premium Tee</h5>
+                            <div class="price">RM 27.99</div>
+                            <p>Luxurious fabric blend for maximum comfort</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Premium Tee', 'RM 27.99', 'assets/images/men/tshirt/tshirt-3.webp', 'Luxurious fabric blend for maximum comfort. Soft-touch finish with reinforced stitching.', 'S, M, L, XL, XXL', '60% Cotton, 40% Modal', 'Men')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in">
+                        <img src="assets/images/women/blouse/blouse-1.webp" alt="Women's Blouse">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Elegant Blouse</h5>
+                            <div class="price">RM 44.99</div>
+                            <p>Sophisticated design perfect for office and events</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Elegant Blouse', 'RM 44.99', 'assets/images/women/blouse/blouse-1.webp', 'Sophisticated design perfect for office and events. Flowing silhouette with elegant drape.', 'XS, S, M, L, XL', '100% Silk', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.1s">
+                        <img src="assets/images/women/blouse/blouse-2.webp" alt="Women's Blouse">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Casual Blouse</h5>
+                            <div class="price">RM 39.99</div>
+                            <p>Comfortable and stylish for everyday elegance</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Casual Blouse', 'RM 39.99', 'assets/images/women/blouse/blouse-2.webp', 'Comfortable and stylish for everyday elegance. Relaxed fit with classic button-front.', 'XS, S, M, L, XL', '70% Cotton, 30% Linen', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.2s">
+                        <img src="assets/images/women/blouse/blouse-3.webp" alt="Women's Blouse">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Designer Blouse</h5>
+                            <div class="price">RM 49.99</div>
+                            <p>Premium quality with unique design elements</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Designer Blouse', 'RM 49.99', 'assets/images/women/blouse/blouse-3.webp', 'Premium quality with unique design elements. Contemporary style with attention to detail.', 'XS, S, M, L, XL', '95% Polyester, 5% Spandex', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.3s">
+                        <img src="assets/images/women/cardigan/cardigan-1.webp" alt="Women's Cardigan">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Cozy Cardigan</h5>
+                            <div class="price">RM 54.99</div>
+                            <p>Warm and comfortable layering piece</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Cozy Cardigan', 'RM 54.99', 'assets/images/women/cardigan/cardigan-1.webp', 'Warm and comfortable layering piece. Soft knit with button-front closure.', 'XS, S, M, L, XL', '70% Wool, 30% Cashmere', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.4s">
+                        <img src="assets/images/women/cardigan/cardigan-2.jpg" alt="Women's Cardigan">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Classic Cardigan</h5>
+                            <div class="price">RM 52.99</div>
+                            <p>Timeless style with versatile color options</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Classic Cardigan', 'RM 52.99', 'assets/images/women/cardigan/cardigan-2.jpg', 'Timeless style with versatile color options. Essential wardrobe piece for any season.', 'XS, S, M, L, XL', '80% Cotton, 20% Nylon', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.5s">
+                        <img src="assets/images/women/cardigan/cardigan-3.jpg" alt="Women's Cardigan">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Premium Cardigan</h5>
+                            <div class="price">RM 59.99</div>
+                            <p>Luxurious knit with exceptional quality</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Premium Cardigan', 'RM 59.99', 'assets/images/women/cardigan/cardigan-3.jpg', 'Luxurious knit with exceptional quality. Soft, breathable fabric with elegant finish.', 'XS, S, M, L, XL', '100% Merino Wool', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.6s">
+                        <img src="assets/images/women/dress/dress-1.jpg" alt="Women's Dress">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Summer Dress</h5>
+                            <div class="price">RM 64.99</div>
+                            <p>Light and breezy dress for warm weather</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Summer Dress', 'RM 64.99', 'assets/images/women/dress/dress-1.jpg', 'Light and breezy dress for warm weather. Flattering A-line silhouette with floral pattern.', 'XS, S, M, L, XL', '100% Cotton Lawn', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.7s">
+                        <img src="assets/images/women/dress/dress-2.jpg" alt="Women's Dress">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Cocktail Dress</h5>
+                            <div class="price">RM 79.99</div>
+                            <p>Elegant evening dress for special occasions</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Cocktail Dress', 'RM 79.99', 'assets/images/women/dress/dress-2.jpg', 'Elegant evening dress for special occasions. Fitted bodice with flowing skirt.', 'XS, S, M, L, XL', '95% Polyester, 5% Spandex', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="women">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.8s">
+                        <img src="assets/images/women/dress/dress-3.jpg" alt="Women's Dress">
+                        <div class="card-body">
+                            <span class="category-badge">Women</span>
+                            <h5>Casual Dress</h5>
+                            <div class="price">RM 54.99</div>
+                            <p>Comfortable everyday dress with modern style</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Casual Dress', 'RM 54.99', 'assets/images/women/dress/dress-3.jpg', 'Comfortable everyday dress with modern style. Easy-care fabric with relaxed fit.', 'XS, S, M, L, XL', '70% Rayon, 30% Linen', 'Women')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in">
+                        <img src="assets/images/kids/jeans/jeans-1.jpg" alt="Kids Jeans">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Kids Denim Jeans</h5>
+                            <div class="price">RM 34.99</div>
+                            <p>Durable jeans perfect for active kids</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Kids Denim Jeans', 'RM 34.99', 'assets/images/kids/jeans/jeans-1.jpg', 'Durable jeans perfect for active kids. Reinforced knees for extra durability.', '4, 6, 8, 10, 12, 14', '98% Cotton, 2% Elastane', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.1s">
+                        <img src="assets/images/kids/jeans/jeans-2.webp" alt="Kids Jeans">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Comfort Jeans</h5>
+                            <div class="price">RM 32.99</div>
+                            <p>Stretchy fabric for maximum comfort and play</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Comfort Jeans', 'RM 32.99', 'assets/images/kids/jeans/jeans-2.webp', 'Stretchy fabric for maximum comfort and play. Adjustable waistband for growing kids.', '4, 6, 8, 10, 12, 14', '80% Cotton, 18% Polyester, 2% Spandex', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.2s">
+                        <img src="assets/images/kids/jeans/jeans-3.jpg" alt="Kids Jeans">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Classic Kids Jeans</h5>
+                            <div class="price">RM 36.99</div>
+                            <p>Traditional denim with modern fit</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Classic Kids Jeans', 'RM 36.99', 'assets/images/kids/jeans/jeans-3.jpg', 'Traditional denim with modern fit. Classic 5-pocket styling in durable fabric.', '4, 6, 8, 10, 12, 14', '100% Cotton Denim', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.3s">
+                        <img src="assets/images/kids/shorts/shorts-1.webp" alt="Kids Shorts">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Summer Shorts</h5>
+                            <div class="price">RM 24.99</div>
+                            <p>Lightweight shorts for summer activities</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Summer Shorts', 'RM 24.99', 'assets/images/kids/shorts/shorts-1.webp', 'Lightweight shorts for summer activities. Quick-dry fabric perfect for outdoor play.', '4, 6, 8, 10, 12, 14', '100% Nylon', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.4s">
+                        <img src="assets/images/kids/shorts/shorts-2.jpg" alt="Kids Shorts">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Active Shorts</h5>
+                            <div class="price">RM 26.99</div>
+                            <p>Performance shorts for sports and play</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Active Shorts', 'RM 26.99', 'assets/images/kids/shorts/shorts-2.jpg', 'Performance shorts for sports and play. Moisture-wicking with elastic waistband.', '4, 6, 8, 10, 12, 14', '88% Polyester, 12% Spandex', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.5s">
+                        <img src="assets/images/kids/shorts/shorts-3.webp" alt="Kids Shorts">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Casual Shorts</h5>
+                            <div class="price">RM 22.99</div>
+                            <p>Comfortable everyday shorts for kids</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Casual Shorts', 'RM 22.99', 'assets/images/kids/shorts/shorts-3.webp', 'Comfortable everyday shorts for kids. Soft cotton blend with practical pockets.', '4, 6, 8, 10, 12, 14', '95% Cotton, 5% Spandex', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.6s">
+                        <img src="assets/images/kids/tshirt/tshirt-1.jpg" alt="Kids T-Shirt">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Fun Graphic Tee</h5>
+                            <div class="price">RM 19.99</div>
+                            <p>Colorful designs kids love to wear</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Fun Graphic Tee', 'RM 19.99', 'assets/images/kids/tshirt/tshirt-1.jpg', 'Colorful designs kids love to wear. Fun graphics on soft, comfortable fabric.', '4, 6, 8, 10, 12, 14', '100% Cotton', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.7s">
+                        <img src="assets/images/kids/tshirt/tshirt-2.jpg" alt="Kids T-Shirt">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Basic Kids Tee</h5>
+                            <div class="price">RM 17.99</div>
+                            <p>Soft cotton t-shirt for daily comfort</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Basic Kids Tee', 'RM 17.99', 'assets/images/kids/tshirt/tshirt-2.jpg', 'Soft cotton t-shirt for daily comfort. Classic crew neck in versatile colors.', '4, 6, 8, 10, 12, 14', '100% Organic Cotton', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="kids">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.8s">
+                        <img src="assets/images/kids/tshirt/tshirt-3.webp" alt="Kids T-Shirt">
+                        <div class="card-body">
+                            <span class="category-badge">Kids</span>
+                            <h5>Premium Kids Tee</h5>
+                            <div class="price">RM 21.99</div>
+                            <p>High-quality fabric with fun prints</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Premium Kids Tee', 'RM 21.99', 'assets/images/kids/tshirt/tshirt-3.webp', 'High-quality fabric with fun prints. Durable construction for active kids.', '4, 6, 8, 10, 12, 14', '95% Cotton, 5% Spandex', 'Kids')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in">
+                        <img src="assets/images/accessories/belts/belts-1.jpg" alt="Belt">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Leather Belt</h5>
+                            <div class="price">RM 29.99</div>
+                            <p>Genuine leather belt with classic buckle</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Leather Belt', 'RM 29.99', 'assets/images/accessories/belts/belts-1.jpg', 'Genuine leather belt with classic buckle. Timeless accessory for any outfit.', 'S (28-32), M (32-36), L (36-40), XL (40-44)', '100% Genuine Leather', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.1s">
+                        <img src="assets/images/accessories/belts/belts-2.jpg" alt="Belt">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Designer Belt</h5>
+                            <div class="price">RM 39.99</div>
+                            <p>Stylish belt with premium metal hardware</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Designer Belt', 'RM 39.99', 'assets/images/accessories/belts/belts-2.jpg', 'Stylish belt with premium metal hardware. Contemporary design with adjustable sizing.', 'S (28-32), M (32-36), L (36-40), XL (40-44)', 'Top Grain Leather', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.2s">
+                        <img src="assets/images/accessories/belts/belts-3.jpg" alt="Belt">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Casual Belt</h5>
+                            <div class="price">RM 24.99</div>
+                            <p>Versatile belt for everyday wear</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Casual Belt', 'RM 24.99', 'assets/images/accessories/belts/belts-3.jpg', 'Versatile belt for everyday wear. Comfortable fabric construction with metal buckle.', 'S (28-32), M (32-36), L (36-40), XL (40-44)', 'Canvas with Leather Trim', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.3s">
+                        <img src="assets/images/accessories/socks/socks-1.jpg" alt="Socks">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Cotton Socks Pack</h5>
+                            <div class="price">RM 14.99</div>
+                            <p>Comfortable cotton blend socks (3-pack)</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Cotton Socks Pack', 'RM 14.99', 'assets/images/accessories/socks/socks-1.jpg', 'Comfortable cotton blend socks (3-pack). Reinforced heel and toe for durability.', 'One Size (6-10)', '75% Cotton, 20% Polyester, 5% Spandex', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.4s">
+                        <img src="assets/images/accessories/socks/socks-2.jpg" alt="Socks">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Athletic Socks</h5>
+                            <div class="price">RM 16.99</div>
+                            <p>Performance socks for active lifestyle</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Athletic Socks', 'RM 16.99', 'assets/images/accessories/socks/socks-2.jpg', 'Performance socks for active lifestyle. Cushioned sole with arch support.', 'One Size (6-10)', '80% Polyester, 15% Nylon, 5% Spandex', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.5s">
+                        <img src="assets/images/accessories/socks/socks-3.jpg" alt="Socks">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Dress Socks</h5>
+                            <div class="price">RM 12.99</div>
+                            <p>Elegant socks for formal occasions</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Dress Socks', 'RM 12.99', 'assets/images/accessories/socks/socks-3.jpg', 'Elegant socks for formal occasions. Fine-gauge knit in classic colors.', 'One Size (6-10)', '70% Cotton, 25% Nylon, 5% Spandex', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.6s">
+                        <img src="assets/images/accessories/wallet/wallet-1.jpg" alt="Wallet">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Leather Wallet</h5>
+                            <div class="price">RM 44.99</div>
+                            <p>Premium leather bifold wallet</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Leather Wallet', 'RM 44.99', 'assets/images/accessories/wallet/wallet-1.jpg', 'Premium leather bifold wallet. Multiple card slots and bill compartment.', 'Standard', '100% Genuine Leather', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.7s">
+                        <img src="assets/images/accessories/wallet/wallet-2.jpg" alt="Wallet">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Slim Wallet</h5>
+                            <div class="price">RM 34.99</div>
+                            <p>Modern minimalist design with RFID protection</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Slim Wallet', 'RM 34.99', 'assets/images/accessories/wallet/wallet-2.jpg', 'Modern minimalist design with RFID protection. Compact size fits easily in pocket.', 'Standard', 'Genuine Leather with RFID Blocking', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-item" data-category="accessories">
+                    <div class="product-card animate-fade-in" style="animation-delay: 0.8s">
+                        <img src="assets/images/accessories/wallet/wallet-3.jpg" alt="Wallet">
+                        <div class="card-body">
+                            <span class="category-badge">Accessories</span>
+                            <h5>Travel Wallet</h5>
+                            <div class="price">RM 49.99</div>
+                            <p>Spacious wallet with multiple compartments</p>
+                            <button class="btn btn-primary-custom w-100" onclick="showProductDetails('Travel Wallet', 'RM 49.99', 'assets/images/accessories/wallet/wallet-3.jpg', 'Spacious wallet with multiple compartments. Organizes cards, cash, and travel documents.', 'Standard', 'Genuine Leather', 'Accessories')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 15px; border: none;">
+                <div class="modal-header" style="border-bottom: 1px solid #e1e3e5; padding: 24px;">
+                    <h5 class="modal-title" id="productModalLabel" style="font-weight: 600; color: #202223;"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 32px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img id="modalProductImage" src="" alt="Product" style="width: 100%; border-radius: 12px; object-fit: cover;">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <span id="modalCategory" class="badge" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); padding: 8px 16px; font-size: 0.875rem; font-weight: 500;"></span>
+                            </div>
+                            <h3 id="modalProductName" style="font-size: 1.75rem; font-weight: 600; color: #202223; margin-bottom: 16px;"></h3>
+                            <div id="modalProductPrice" style="font-size: 2rem; font-weight: 700; color: var(--primary-color); margin-bottom: 24px;"></div>
+                            <p id="modalProductDescription" style="color: #6d7175; line-height: 1.6; margin-bottom: 24px;"></p>
+
+                            <div style="border-top: 1px solid #e1e3e5; padding-top: 24px;">
+                                <div class="mb-3">
+                                    <h6 style="font-weight: 600; color: #202223; margin-bottom: 8px;">Available Sizes</h6>
+                                    <p id="modalProductSizes" style="color: #6d7175;"></p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 style="font-weight: 600; color: #202223; margin-bottom: 8px;">Material</h6>
+                                    <p id="modalProductMaterial" style="color: #6d7175;"></p>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 32px;">
+                                <button class="btn btn-primary-custom w-100" style="padding: 14px; font-size: 1rem;">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer style="background: linear-gradient(135deg, #008060 0%, #004c3f 100%); color: white; padding: 40px 0 0; margin-top: 60px;">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-4 mb-4">
+                    <h5 style="font-weight: 600; margin-bottom: 20px; font-size: 1.3rem;">Wearify Co.</h5>
+                    <p style="opacity: 0.9; line-height: 1.6;">Fashion design with value. Providing quality clothing and accessories for everyone since 1971.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 style="font-weight: 600; margin-bottom: 20px; font-size: 1.1rem;">Quick Links</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;"><a href="dashboard.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Dashboard</a></li>
+                        <li style="margin-bottom: 10px;"><a href="products.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Products</a></li>
+                        <li style="margin-bottom: 10px;"><a href="categories.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Categories</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Home</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 style="font-weight: 600; margin-bottom: 20px; font-size: 1.1rem;">Contact Info</h5>
+                    <p style="opacity: 0.9; line-height: 1.8; margin: 0;">
+                        Malaysia<br>
+                        Email: info@salmastore.com<br>
+                        Phone: +60 123-456-789
+                    </p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding: 20px 0; text-align: center;">
+                <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">&copy; 2025 Wearify Co. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        
+        const categoryFilter = document.getElementById('categoryFilter');
+        const searchInput = document.getElementById('searchInput');
+        const productItems = document.querySelectorAll('.product-item');
+
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+
+            if (category) {
+                
+                categoryFilter.value = category;
+                
+                filterProducts();
+            }
+        });
+
+        categoryFilter.addEventListener('change', filterProducts);
+        searchInput.addEventListener('input', filterProducts);
+
+        function filterProducts() {
+            const selectedCategory = categoryFilter.value;
+            const searchTerm = searchInput.value.toLowerCase();
+
+            productItems.forEach(item => {
+                const itemCategory = item.dataset.category;
+                const itemText = item.textContent.toLowerCase();
+
+                const categoryMatch = selectedCategory === 'all' || itemCategory === selectedCategory;
+                const searchMatch = itemText.includes(searchTerm);
+
+                if (categoryMatch && searchMatch) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        
+        function showProductDetails(name, price, image, description, sizes, material, category) {
+            document.getElementById('modalProductName').textContent = name;
+            document.getElementById('modalProductPrice').textContent = price;
+            document.getElementById('modalProductImage').src = image;
+            document.getElementById('modalProductDescription').textContent = description;
+            document.getElementById('modalProductSizes').textContent = sizes;
+            document.getElementById('modalProductMaterial').textContent = material;
+            document.getElementById('modalCategory').textContent = category;
+            document.getElementById('productModalLabel').textContent = name;
+
+            const modal = new bootstrap.Modal(document.getElementById('productModal'));
+            modal.show();
+        }
+    </script>
+</body>
+</html>
