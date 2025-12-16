@@ -37,7 +37,7 @@ c. User Experience Enhancements
 Test User Login
 
 Username: enol
-Password: Ainul11$
+Password: 1897
 
 This account will redirect users to the dashboard after successful login.
 
